@@ -1,5 +1,5 @@
 
-### Exercise
+### Exercise (Các bài tập đã làm trong từng topic)
 
 - **[01_Middleware](https://github.com/Hieu-iceTea/Kaopiz_Learn_LaravelBasic/tree/Exercise/01_Middleware)**
 - **[02_ViewBlade](https://github.com/Hieu-iceTea/Kaopiz_Learn_LaravelBasic/tree/Exercise/02_ViewBlade)**
