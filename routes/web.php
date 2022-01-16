@@ -22,30 +22,3 @@ Route::get('/', function () {
     return view('index');
 });
 
-//Route::get('/hello', [PostController::class, 'hello'])->middleware('check_token');
-
-Route::get('/login', function () {
-    return 'Login page... Thêm tham số sau vào URL: [?token=1]';
-});
-
-Route::middleware(['check_token'])->group(function () {
-
-    Route::get('/hello', [PostController::class, 'hello']);
-
-});
-
-Route::middleware(['check_token_header'])->group(function () {
-
-    Route::get('/check-token', function () {
-        echo "check-token-pass";
-    });
-
-});
-
-Route::middleware(['check_role:user'])->group(function () {
-
-    Route::get('/check-role', function () {
-        echo "check-role-pass";
-    });
-
-});
