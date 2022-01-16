@@ -40,10 +40,10 @@
                             <div class="input-group">
                                 <input type="search" name="user_id" id="user_id" value="{{ request('user_id') }}"
                                        placeholder="user_id..." class="form-control">
-                                <input type="search" name="name" id="name" value="{{ request('name') }}"
-                                       placeholder="name..." class="form-control">
-                                <input type="search" name="class" id="class" value="{{ request('class') }}"
-                                       placeholder="class..." class="form-control">
+                                <input type="search" name="phone" id="phone" value="{{ request('phone') }}"
+                                       placeholder="phone..." class="form-control">
+                                <input type="search" name="role_name" id="role_name" value="{{ request('role_name') }}"
+                                       placeholder="role_name..." class="form-control">
                                 <span class="input-group-append">
                                                 <button type="submit" class="btn btn-primary">
                                                     <i class="fa fa-search"></i>&nbsp;
@@ -65,9 +65,9 @@
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th>Name</th>
-                                <th>Class</th>
+                                <th class="text-center">Full name</th>
+                                <th>Phone</th>
+                                <th>Role Name</th>
                                 {{--<th class="text-center">Actions</th>--}}
                             </tr>
                             </thead>
@@ -75,12 +75,12 @@
 
                             @foreach($users as $user)
                                 <tr>
-                                    <td class="text-center text-muted">#{{ $user->id }}</td>
+                                    <td class="text-center text-muted">#{{ $user->first_name . ' ' . $user->last_name }}</td>
                                     <td>
                                         <div class="widget-content p-0">
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">{{ $user->name }}</div>
+                                                    <div class="widget-heading">{{ $user->phone->number }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                                         <div class="widget-content p-0">
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">{{ $user->class }}</div>
+                                                    <div class="widget-heading">{{ implode(", ", $user->roles->pluck('name'))  }}</div>
                                                 </div>
                                             </div>
                                         </div>

@@ -17,13 +17,25 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $userId = $request->get('user_id');
-        $name = $request->get('name');
-        $class = $request->get('class');
+        $phone = $request->get('phone');
+        $roleName = $request->get('role_name');
 
-        $users = User::where('id', '=', $userId)
-            ->where('name', 'LIKE', '%' . $name . '%')
-            ->where('class', 'LIKE', '%' . $class . '%')
-            ->orderBy('id', 'desc')
+        $users = User::join('phones', 'users.id', '=', 'phones.user_id')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->join('roles', 'role_user.role_id', '=', 'roles.id')
+            ->where(function ($query) use ($userId, $phone, $roleName) {
+                if (isset($userId)) {
+                    $query->where('users.id', '=', $userId);
+                }
+
+                if (isset($phone)) {
+                    $query->where('phones.number', 'like', '%' . $phone . '%');
+                }
+
+                if (isset($roleName)) {
+                    $query->where('roles.name', '=', $roleName);
+                }
+            })
             ->get();
 
         return view('admin.user.index', compact('users'));
