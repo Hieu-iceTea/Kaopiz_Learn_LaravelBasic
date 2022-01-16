@@ -20,9 +20,9 @@ class UserController extends Controller
         $phone = $request->get('phone');
         $roleName = $request->get('role_name');
 
-        $users = User::join('phones', 'users.id', '=', 'phones.user_id')
-            ->join('role_user', 'users.id', '=', 'role_user.user_id')
-            ->join('roles', 'role_user.role_id', '=', 'roles.id')
+        $users = User::leftJoin('phones', 'users.id', '=', 'phones.user_id')
+            ->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
+            ->leftJoin('roles', 'role_user.role_id', '=', 'roles.id')
             ->where(function ($query) use ($userId, $phone, $roleName) {
                 if (isset($userId)) {
                     $query->where('users.id', '=', $userId);

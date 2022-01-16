@@ -75,12 +75,12 @@
 
                             @foreach($users as $user)
                                 <tr>
-                                    <td class="text-center text-muted">#{{ $user->first_name . ' ' . $user->last_name }}</td>
+                                    <td class="text-center text-muted">{{ $user->first_name . ' ' . $user->last_name }}</td>
                                     <td>
                                         <div class="widget-content p-0">
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">{{ $user->phone->number }}</div>
+                                                    <div class="widget-heading">{{ $user->phone->number ?? '' }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                                         <div class="widget-content p-0">
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">{{ implode(", ", $user->roles->pluck('name'))  }}</div>
+                                                    <div class="widget-heading">{{ $user->roles->pluck('name')  }}</div>
                                                 </div>
                                             </div>
                                         </div>
