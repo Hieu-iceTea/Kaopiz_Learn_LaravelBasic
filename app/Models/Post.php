@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    protected $table = 'posts';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
+
+    public function comments() {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
+    }
+
 }
