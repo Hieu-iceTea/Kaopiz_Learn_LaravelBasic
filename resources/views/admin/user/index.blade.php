@@ -38,8 +38,12 @@
 
                         <form>
                             <div class="input-group">
-                                <input type="search" name="search" id="search"value="{{ request('search') }}"
-                                       placeholder="Search everything" class="form-control">
+                                <input type="search" name="user_id" id="user_id" value="{{ request('user_id') }}"
+                                       placeholder="user_id..." class="form-control">
+                                <input type="search" name="name" id="name" value="{{ request('name') }}"
+                                       placeholder="name..." class="form-control">
+                                <input type="search" name="class" id="class" value="{{ request('class') }}"
+                                       placeholder="class..." class="form-control">
                                 <span class="input-group-append">
                                                 <button type="submit" class="btn btn-primary">
                                                     <i class="fa fa-search"></i>&nbsp;
@@ -62,36 +66,46 @@
                             <thead>
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th>Title</th>
-                                <th class="text-center">Actions</th>
+                                <th>Name</th>
+                                <th>Class</th>
+                                {{--<th class="text-center">Actions</th>--}}
                             </tr>
                             </thead>
                             <tbody>
 
-                            @foreach($posts as $post)
+                            @foreach($users as $user)
                                 <tr>
-                                    <td class="text-center text-muted">#{{ $post->id }}</td>
+                                    <td class="text-center text-muted">#{{ $user->id }}</td>
                                     <td>
                                         <div class="widget-content p-0">
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">{{ $post->title }}</div>
+                                                    <div class="widget-heading">{{ $user->name }}</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="text-center">
-                                        <a href="./admin/post/{{ $post->id }}"
+                                    <td>
+                                        <div class="widget-content p-0">
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left flex2">
+                                                    <div class="widget-heading">{{ $user->class }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    {{--<td class="text-center">
+                                        <a href="./admin/post/{{ $user->id }}"
                                            class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
                                             Details
                                         </a>
-                                        <a href="./admin/post/{{ $post->id }}/edit" data-toggle="tooltip" title="Edit"
+                                        <a href="./admin/post/{{ $user->id }}/edit" data-toggle="tooltip" title="Edit"
                                            data-placement="bottom" class="btn btn-outline-warning border-0 btn-sm">
                                                         <span class="btn-icon-wrapper opacity-8">
                                                             <i class="fa fa-edit fa-w-20"></i>
                                                         </span>
                                         </a>
-                                        <form class="d-inline" action="./admin/post/{{ $post->id }}" method="post">
+                                        <form class="d-inline" action="./admin/post/{{ $user->id }}" method="post">
                                             @csrf
                                             @method('DELETE')
 
@@ -104,7 +118,7 @@
                                                             </span>
                                             </button>
                                         </form>
-                                    </td>
+                                    </td>--}}
                                 </tr>
                             @endforeach
 
@@ -113,7 +127,7 @@
                     </div>
 
                     <div class="d-block card-footer">
-                        {{--{{ $posts->links() }}--}}
+                        {{--{{ $users->links() }}--}}
                     </div>
 
                 </div>

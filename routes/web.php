@@ -24,11 +24,11 @@ Route::prefix('admin')
     ->group(function () {
     Route::redirect('', 'admin/user');
 
-    Route::resource('post', \App\Http\Controllers\Admin\PostController::class);
+    Route::resource('user', \App\Http\Controllers\Admin\UserController::class);
 
     /*Route::prefix('login')->group(function () {
         Route::get('', [\App\Http\Controllers\Admin\HomeController::class, 'getLogin'])->withoutMiddleware('CheckAdminLogin');
-        Route::post('', [App\Http\Controllers\Admin\HomeController::class, 'postLogin'])->withoutMiddleware('CheckAdminLogin');
+        Route::user('', [App\Http\Controllers\Admin\HomeController::class, 'postLogin'])->withoutMiddleware('CheckAdminLogin');
     });
 
     Route::get('logout', [App\Http\Controllers\Admin\HomeController::class, 'logout']);*/
